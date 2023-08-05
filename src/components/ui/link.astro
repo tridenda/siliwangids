@@ -1,0 +1,46 @@
+---
+interface Props {
+  href: string;
+  size?: "sm" | "md" | "lg" | "xl";
+  block?: boolean;
+  style?: "outline" | "primary" | "inverted" | "muted" | "basic";
+  class?: string;
+  [x: string]: any;
+}
+
+const {
+  href,
+  block,
+  size = "lg",
+  style = "primary",
+  class: className,
+  ...rest
+} = Astro.props;
+
+const sizes = {
+  xl: "max-w-sm px-1 py-3 sm:px-10 sm:py-5 rounded-[50px] text-xl md:text-2xl",
+  lg: "px-5 py-2.5",
+  md: "px-4 py-2",
+  sm: "px-3 py-2 text-sm",
+};
+
+const styles = {
+  outline: "bg-white border-2 border-black hover:bg-gray-100 text-black ",
+  primary: "bg-green-900 text-white hover:bg-green-800 no-underline",
+  basic: "text-white",
+  muted: "bg-gray-100 hover:bg-gray-200   border-2 border-transparent",
+};
+---
+
+<a
+  href={href}
+  {...rest}
+  class:list={[
+    "rounded-3xl text-center transition px-8 text-bold",
+    block && "w-full",
+    sizes[size],
+    styles[style],
+    className,
+  ]}
+  ><slot />
+</a>

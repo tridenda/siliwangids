@@ -1,0 +1,27 @@
+---
+import Link from "./ui/link.astro";
+import { Picture } from "@astrojs/image/components";
+import computerAndBooks from "@assets/computer-and-books.jpg";
+---
+
+<div
+  class="p-8 mt-10 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
+  <Picture
+    src={computerAndBooks}
+    sizes="(max-width: 800px) 100vw, 600px"
+    widths={[500, 500]}
+    fit="cover"
+    position="center"
+    class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl"
+  />
+  <h2 class="text-black text-5xl font-bold tracking-tight">
+    Your are in the right place
+  </h2>
+  <p class="text-black mt-4 text-lg md:text-xl max-w-lg">
+    The most efficient and supportive way for you to learn in-demand skills, get
+    hired, and advance your career.
+  </p>
+  <div class="flex mt-5">
+    <Link href="#" style="primary">Join Community</Link>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import Link from "@components/ui/link.astro";
+import Container from "./container.astro";
+---
+
+<main class="bg-yellow-900 h-screen">
+  <Container>
+    <div
+      class="flex justify-center flex-col items-center gap-6 h-screen sm:gap-10 -mt-[61px]">
+      <span class="font-bold text-4xl sm:text-6xl text-center"
+        >Learn essential skills.</span
+      >
+      <span class="font-black text-3xl sm:text-5xl text-green-900 text-center"
+        >Reach your career goals.</span
+      >
+      <span class="font-medium text-xl sm:text-2xl max-w-[1000px] text-center"
+        >The most efficient and supportive way for you to learn in-demand
+        skills, get hired, and advance your career.</span
+      >
+      <Link href="/course" size="xl" block>Start Learning for Free</Link>
+    </div>
+  </Container>
+</main>

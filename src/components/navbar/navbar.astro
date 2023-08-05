@@ -1,0 +1,85 @@
+---
+import Container from "@components/container.astro";
+import Link from "@components/ui/link.astro";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+
+interface Props {
+  style?: "primary" | "secondary";
+  class?: string;
+  [x: string]: any;
+}
+
+const { style = "primary", class: className, ...rest } = Astro.props;
+
+const styles = {
+  primary: "py-4 bg-yellow-900",
+  secondary: "py-4 bg-white border-solid border-b border-gray-900",
+};
+
+const menuitems = [
+  {
+    title: "Course",
+    path: "/course",
+  },
+  {
+    title: "About",
+    path: "/#about",
+  },
+  {
+    title: "Blog",
+    path: "/blog",
+  },
+  {
+    title: "Community",
+    path: "/#community",
+  },
+  {
+    title: "Contact",
+    path: "/#contact",
+  },
+];
+---
+
+<div {...rest} class:list={[styles[style], className]}>
+  <Container>
+    <header
+      class="flex flex-col lg:flex-row justify-between items-center lg:justify-start">
+      <Astronav>
+        <div class="flex w-full lg:w-auto items-center justify-between">
+          <a href="/" class="text-lg"
+            ><span class="font-black text-green-900">Siliwangi School</span>
+          </a>
+          <div class="block lg:hidden">
+            <MenuIcon class="w-4 h-4 text-green-900 font-bold" />
+          </div>
+        </div>
+        <MenuItems
+          class="hidden w-full font-medium lg:w-auto mt-2 lg:flex lg:mt-0 lg:ml-auto lg:mr-3">
+          <ul class="flex flex-col lg:flex-row">
+            {
+              menuitems.map((item) => (
+                <>
+                  <li>
+                    <a
+                      href={item.path}
+                      class="flex justify-center lg:px-2 py-2 text-gray-900 hover:text-gray-900">
+                      {item.title}
+                    </a>
+                  </li>
+                </>
+              ))
+            }
+          </ul>
+          <div class="lg:hidden flex items-center mt-3 gap-4">
+            <Link href="#" size="md" block>Take a Course</Link>
+          </div>
+        </MenuItems>
+      </Astronav>
+      <div>
+        <div class="hidden lg:flex items-center gap-4">
+          <Link href="/course" size="md" style="primary">Take a Course</Link>
+        </div>
+      </div>
+    </header>
+  </Container>
+</div>

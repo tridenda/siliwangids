@@ -1,0 +1,20 @@
+---
+import About from "@components/about.astro";
+import Hero from "@components/hero.astro";
+import Layout from "@layouts/Layout.astro";
+import Cta from "@components/cta.astro";
+import Contact from "@components/contact.astro";
+---
+
+<Layout title="">
+  <Hero />
+  <div id="about">
+    <About />
+  </div>
+  <div id="community">
+    <Cta />
+  </div>
+  <div id="contact">
+    <Contact />
+  </div>
+</Layout>

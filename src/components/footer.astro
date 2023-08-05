@@ -1,0 +1,17 @@
+---
+import Link from "./ui/link.astro";
+---
+
+<footer class="flex flex-col justify-between bg-green-900 h-56">
+  <div class="flex justify-center flex-wrap mx-auto max-w-3xl pt-14 lg:pt-16">
+    <Link href="/course" size="md" style="basic">Courses</Link>
+    <Link href="/#about" size="md" style="basic">About</Link>
+    <Link href="/blog" size="md" style="basic">Blog</Link>
+    <Link href="/#community" size="md" style="basic">Community</Link>
+    <Link href="/#contact" size="md" style="basic">Contact</Link>
+  </div>
+  <p class="text-center text-sm text-gray-400 py-2">
+    Copyright © {new Date().getFullYear()} Siliwangi School. All rights
+    reserved.
+  </p>
+</footer>

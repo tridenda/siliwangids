@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "@astrojs/image/components";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+
+// Filter blog entries with 'draft: false' & date before current date
+const publishedCourseEntries = await getCollection("course", ({ data }) => {
+  return !data.draft && data.publishDate < new Date();
+});
+
+// Sort content entries by publication date
+publishedCourseEntries.sort(function (a, b) {
+  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
+});
+---
+
+<Layout title="Courses" navbarStyle="secondary">
+  <Container>
+    <main class="flex flex-wrap max-w-max justify-center gap-7 my-10">
+      {
+        publishedCourseEntries.map((courseEntry, index) => (
+          <a href={`course/${courseEntry.slug}`} class="group">
+            <div class="flex flex-col justify-start items-center bg-gray-400 w-max sm:w-96 sm:h-72 sm:rounded-3xl transition group-hover:-translate-y-1 group-hover:shadow-xl">
+              <Picture
+                src={courseEntry.data.image.src}
+                alt={courseEntry.data.image.alt}
+                sizes="(max-width: 800px) 100vw, 800px"
+                widths={[200, 400, 800]}
+                aspectRatio="16:9"
+                background="#ffffff"
+                fit="cover"
+                position="center"
+                loading={index <= 2 ? "eager" : "lazy"}
+                decoding={index <= 2 ? "sync" : "async"}
+                class="w-full sm:rounded-t-3xl"
+              />
+              <p class="flex items-center h-full font-semibold text-lg my-2 text-center">
+                {courseEntry.data.title}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </main>
+  </Container>
+</Layout>
